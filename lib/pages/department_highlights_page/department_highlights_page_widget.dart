@@ -1,7 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/art_piece_page/art_piece_page_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,7 +56,7 @@ class _DepartmentHighlightsPageWidgetState
           hoverColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onTap: () async {
-            Navigator.pop(context);
+            context.pop();
           },
           child: Icon(
             Icons.arrow_back,
@@ -146,14 +145,14 @@ class _DepartmentHighlightsPageWidgetState
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ArtPiecePageWidget(
-                                        artPiece: containerGetArtPieceResponse
-                                            .jsonBody,
+                                  context.pushNamed(
+                                    'ArtPiecePage',
+                                    queryParams: {
+                                      'artPiece': serializeParam(
+                                        containerGetArtPieceResponse.jsonBody,
+                                        ParamType.JSON,
                                       ),
-                                    ),
+                                    }.withoutNulls,
                                   );
                                 },
                                 child: Container(
@@ -167,14 +166,14 @@ class _DepartmentHighlightsPageWidgetState
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ArtPiecePageWidget(
-                                            artPiece: searchResultsItem,
+                                      context.pushNamed(
+                                        'ArtPiecePage',
+                                        queryParams: {
+                                          'artPiece': serializeParam(
+                                            searchResultsItem,
+                                            ParamType.JSON,
                                           ),
-                                        ),
+                                        }.withoutNulls,
                                       );
                                     },
                                     child: Card(

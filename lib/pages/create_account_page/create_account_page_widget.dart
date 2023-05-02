@@ -2,8 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/main.dart';
-import '/pages/login_page/login_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -271,6 +269,8 @@ class _CreateAccountPageWidgetState extends State<CreateAccountPageWidget> {
                                       0.0, 0.0, 0.0, 20.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      GoRouter.of(context).prepareAuthEvent();
+
                                       final user =
                                           await authManager.signInWithEmail(
                                         context,
@@ -281,14 +281,7 @@ class _CreateAccountPageWidgetState extends State<CreateAccountPageWidget> {
                                         return;
                                       }
 
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => NavBarPage(
-                                              initialPage: 'HomePage'),
-                                        ),
-                                        (r) => false,
-                                      );
+                                      context.goNamedAuth('HomePage', mounted);
                                     },
                                     text: 'Create Account',
                                     options: FFButtonOptions(
@@ -320,13 +313,7 @@ class _CreateAccountPageWidgetState extends State<CreateAccountPageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    await Navigator.pushAndRemoveUntil(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => LoginPageWidget(),
-                                      ),
-                                      (r) => false,
-                                    );
+                                    context.goNamed('LoginPage');
                                   },
                                   child: Text(
                                     'Already have an account?',

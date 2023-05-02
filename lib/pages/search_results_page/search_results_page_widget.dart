@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/art_piece_page/art_piece_page_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -94,7 +93,7 @@ class _SearchResultsPageWidgetState extends State<SearchResultsPageWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
-                              Navigator.pop(context);
+                              context.pop();
                             },
                           ),
                           Padding(
@@ -136,15 +135,14 @@ class _SearchResultsPageWidgetState extends State<SearchResultsPageWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                SearchResultsPageWidget(
-                                              searchTerm:
-                                                  _model.textController.text,
+                                        context.pushNamed(
+                                          'SearchResultsPage',
+                                          queryParams: {
+                                            'searchTerm': serializeParam(
+                                              _model.textController.text,
+                                              ParamType.String,
                                             ),
-                                          ),
+                                          }.withoutNulls,
                                         );
                                       },
                                       child: Icon(
@@ -161,14 +159,14 @@ class _SearchResultsPageWidgetState extends State<SearchResultsPageWidget> {
                                         child: TextFormField(
                                           controller: _model.textController,
                                           onFieldSubmitted: (_) async {
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SearchResultsPageWidget(
-                                                  searchTerm: widget.searchTerm,
+                                            context.pushNamed(
+                                              'SearchResultsPage',
+                                              queryParams: {
+                                                'searchTerm': serializeParam(
+                                                  widget.searchTerm,
+                                                  ParamType.String,
                                                 ),
-                                              ),
+                                              }.withoutNulls,
                                             );
                                           },
                                           obscureText: false,
@@ -313,14 +311,14 @@ class _SearchResultsPageWidgetState extends State<SearchResultsPageWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ArtPiecePageWidget(
-                                        artPiece: containerGetArtPieceResponse
-                                            .jsonBody,
+                                  context.pushNamed(
+                                    'ArtPiecePage',
+                                    queryParams: {
+                                      'artPiece': serializeParam(
+                                        containerGetArtPieceResponse.jsonBody,
+                                        ParamType.JSON,
                                       ),
-                                    ),
+                                    }.withoutNulls,
                                   );
                                 },
                                 child: Container(
@@ -334,16 +332,15 @@ class _SearchResultsPageWidgetState extends State<SearchResultsPageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ArtPiecePageWidget(
-                                            artPiece:
-                                                containerGetArtPieceResponse
-                                                    .jsonBody,
+                                      context.pushNamed(
+                                        'ArtPiecePage',
+                                        queryParams: {
+                                          'artPiece': serializeParam(
+                                            containerGetArtPieceResponse
+                                                .jsonBody,
+                                            ParamType.JSON,
                                           ),
-                                        ),
+                                        }.withoutNulls,
                                       );
                                     },
                                     child: Card(

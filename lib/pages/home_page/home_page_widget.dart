@@ -1,8 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/department_highlights_page/department_highlights_page_widget.dart';
-import '/pages/search_results_page/search_results_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -113,15 +111,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              SearchResultsPageWidget(
-                                            searchTerm:
-                                                _model.textController.text,
+                                      context.pushNamed(
+                                        'SearchResultsPage',
+                                        queryParams: {
+                                          'searchTerm': serializeParam(
+                                            _model.textController.text,
+                                            ParamType.String,
                                           ),
-                                        ),
+                                        }.withoutNulls,
                                       );
                                     },
                                     child: Icon(
@@ -138,15 +135,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: TextFormField(
                                         controller: _model.textController,
                                         onFieldSubmitted: (_) async {
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SearchResultsPageWidget(
-                                                searchTerm:
-                                                    _model.textController.text,
+                                          context.pushNamed(
+                                            'SearchResultsPage',
+                                            queryParams: {
+                                              'searchTerm': serializeParam(
+                                                _model.textController.text,
+                                                ParamType.String,
                                               ),
-                                            ),
+                                            }.withoutNulls,
                                           );
                                         },
                                         obscureText: false,
@@ -278,21 +274,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                DepartmentHighlightsPageWidget(
-                                              departmentId: getJsonField(
+                                        context.pushNamed(
+                                          'DepartmentHighlightsPage',
+                                          queryParams: {
+                                            'departmentId': serializeParam(
+                                              getJsonField(
                                                 departmentsItem,
                                                 r'''$.departmentId''',
                                               ),
-                                              displayName: getJsonField(
+                                              ParamType.int,
+                                            ),
+                                            'displayName': serializeParam(
+                                              getJsonField(
                                                 departmentsItem,
                                                 r'''$.displayName''',
                                               ).toString(),
+                                              ParamType.String,
                                             ),
-                                          ),
+                                          }.withoutNulls,
                                         );
                                       },
                                       child: Card(

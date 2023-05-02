@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +72,7 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                Navigator.pop(context);
+                context.pop();
               },
               child: Icon(
                 Icons.arrow_back,
@@ -426,13 +425,8 @@ class _ArtPiecePageWidgetState extends State<ArtPiecePageWidget> {
                           ]),
                         };
                         await currentUserReference!.update(usersUpdateData);
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                NavBarPage(initialPage: 'MyCollection'),
-                          ),
-                        );
+
+                        context.pushNamed('MyCollection');
                       },
                       text: 'Add to Collection',
                       icon: Icon(

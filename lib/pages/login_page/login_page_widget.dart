@@ -2,8 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/main.dart';
-import '/pages/create_account_page/create_account_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -271,6 +269,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       0.0, 0.0, 0.0, 18.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      GoRouter.of(context).prepareAuthEvent();
+
                                       final user =
                                           await authManager.signInWithEmail(
                                         context,
@@ -281,14 +281,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         return;
                                       }
 
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => NavBarPage(
-                                              initialPage: 'HomePage'),
-                                        ),
-                                        (r) => false,
-                                      );
+                                      context.goNamedAuth('HomePage', mounted);
                                     },
                                     text: 'Sign in with email',
                                     options: FFButtonOptions(
@@ -323,14 +316,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              CreateAccountPageWidget(),
-                                        ),
-                                        (r) => false,
-                                      );
+                                      context.goNamed('CreateAccountPage');
                                     },
                                     child: Text(
                                       'Create Account',
@@ -351,19 +337,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   0.0, 0.0, 0.0, 15.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
                                   final user = await authManager
                                       .signInAnonymously(context);
                                   if (user == null) {
                                     return;
                                   }
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          NavBarPage(initialPage: 'HomePage'),
-                                    ),
-                                    (r) => false,
-                                  );
+
+                                  context.goNamedAuth('HomePage', mounted);
                                 },
                                 text: 'Continue as Guest',
                                 icon: Icon(
@@ -408,21 +389,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             AlignmentDirectional(0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
                                             final user = await authManager
                                                 .signInWithGoogle(context);
                                             if (user == null) {
                                               return;
                                             }
-                                            await Navigator.pushAndRemoveUntil(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    NavBarPage(
-                                                        initialPage:
-                                                            'HomePage'),
-                                              ),
-                                              (r) => false,
-                                            );
+
+                                            context.goNamedAuth(
+                                                'HomePage', mounted);
                                           },
                                           text: 'Sign in with Google',
                                           icon: Icon(
@@ -443,6 +419,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             textStyle: GoogleFonts.getFont(
                                               'Roboto',
                                               color: Color(0xFF606060),
+                                              fontWeight: FontWeight.w500,
                                               fontSize: 15.0,
                                             ),
                                             elevation: 4.0,
@@ -483,19 +460,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         0.0, 0.0, 0.0, 15.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        GoRouter.of(context).prepareAuthEvent();
                                         final user = await authManager
                                             .signInWithApple(context);
                                         if (user == null) {
                                           return;
                                         }
-                                        await Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => NavBarPage(
-                                                initialPage: 'HomePage'),
-                                          ),
-                                          (r) => false,
-                                        );
+
+                                        context.goNamedAuth(
+                                            'HomePage', mounted);
                                       },
                                       text: 'Sign in with Apple',
                                       icon: FaIcon(
@@ -537,19 +510,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          GoRouter.of(context)
+                                              .prepareAuthEvent();
                                           final user = await authManager
                                               .signInWithFacebook(context);
                                           if (user == null) {
                                             return;
                                           }
-                                          await Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => NavBarPage(
-                                                  initialPage: 'HomePage'),
-                                            ),
-                                            (r) => false,
-                                          );
+
+                                          context.goNamedAuth(
+                                              'HomePage', mounted);
                                         },
                                         text: 'Login with Facebook',
                                         icon: Icon(
